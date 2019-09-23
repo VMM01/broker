@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+  </head>
+  <body>
+      <div class="row">
+          <div class="columnLeft">
+            <h1>Chanels</h1>
+              <table>
+                  <tr>
+                     <td>Parkour</td>
+                  </tr>
+                  <tr>
+                     <td>Breakdance</td>
+                  </tr>
+                  <tr>
+                      <td>Casino</td>
+                   </tr>
+                   <tr>
+                      <td>Cinema</td> <input type="button" id="btnEd" value="Send Data"></button>
+                   </tr>
+               </table>
+          </div>
+          
+          <div class="columnRight"></div>
+        </div>
+    <!--<h1>Hello World!</h1>
+    We are using Node.js <span id="node-version"></span>,
+    Chromium <span id="chrome-version"></span>,
+    and Electron <span id="electron-version"></span>. -->
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+  </body>
+</html>
+
+<script type="text/javascript">
+  const ipcRenderer = require('electron').ipcRenderer; 
+  const btnclick = document.getElementById('btnEd');
+  btnclick.addEventListener('click', function () {
+    var arg ="secondparam";
+ 
+    ipcRenderer.send("btnclick", arg);
+});
+</script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript">  
+ 
+//ipcRenderer.on will receive the "btnclick-task-finished" info from main process 
+ ipcRenderer.on('btnclick-task-finished', function(event,param) {
+    console.log('btn finished');
+ });
+</script>

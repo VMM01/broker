@@ -1,0 +1,49 @@
+h1 {
+    color: black;
+    text-align: center;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+.columnLeft {
+    float: left;
+    height: 100%;
+    width: 35%;
+    background-color: aqua;
+}
+
+.columnRight {
+    float: left;
+    height: 100%;
+    width: 65%;
+    background-color: seagreen;
+}
+
+table {
+    border: 2px solid black;
+    width: 100%;
+ }
+
+td {
+    border-bottom: 0.5px solid gray;
+    font-size: 24px;
+    height: 100px;
+}
+
+.row{
+    height: 100%;
+    width: 100%;
+}
+
+.row:after {
+    height: 100%;
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+
+  
