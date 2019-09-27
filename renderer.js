@@ -59,5 +59,87 @@
 //       document.getElementById('btnEd').addEventListener('click', () => {
 //         sendData();
 //       })
-    
+const ipcRenderer = require('electron').ipcRenderer;
+
+(function enterText() {
+  let channel = document.getElementById("addChannel")
+  channel.addEventListener('click', () => {
+    let name = document.getElementById('chanelName')
+    createNewChat(name.value)
+    reloadCategories()
+    chat.className = "chat_list active_chat"
+    ipcRenderer.send("categoryChosen", chatName.innerText)
+  })
+})()
+ipcRenderer.on('getChannels', (event, message) => {
+console.log(message)
+message.forEach( (x) => {
+    createNewChat(x)
+  })
+})
+
+channelExist = (channelName) => {
+  const chats = document.getElementsByClassName("inbox_chat")[0].childNodes
+  for (let chat of chats) {
+  chat.className = "chat_list"
+  
+  var peopleNode = document.createElement("div");
+  peopleNode.className = "chat_people";
+  var chatMain = document.createElement("div");
+  chatMain.className = "chat_ib"
+  var chatName = document.createElement("h5")
+  if (chatName.innerText == chatName) { return true}
+  }
+  return false
+}
+
+createNewChat = (category) => {
+  console.log(category)
+  if (channelExist(category)) { return true }
+  const chats = document.getElementsByClassName("inbox_chat")[0]
+  var chat = document.createElement("div");
+  chat.className = "chat_list"
+
+  var peopleNode = document.createElement("div");
+  peopleNode.className = "chat_people";
+  var chatMain = document.createElement("div");
+  chatMain.className = "chat_ib"
+  var chatName = document.createElement("h5")
+  chatName.innerText = category ;
+  chatMain.appendChild(chatName);
+  peopleNode.appendChild(chatMain)
+  chat.appendChild(peopleNode)
+  chat.addEventListener('click', function() { 
+    reloadCategories()
+    chat.className = "chat_list active_chat"
+    ipcRenderer.send("categoryChosen", chatName.innerText)
+  }, false);
+  chats.appendChild(chat);
+  // console.log(message) // Prints 'whoooooooh!'
+}
+
+reloadCategories = () => {
+  const chats = document.getElementsByClassName("inbox_chat")[0].childNodes
+  for (let chat of chats) {
+    if (chat.className == "chat_list active_chat") {
+      chat.className = "chat_list"
+    }
+  }
+}
+
+
+
+ipcRenderer.on('getMessages', (event, message) => {
+  console.log(message) // Prints 'whoooooooh!'
+
+  var parser = document.createElement("html")
+  parser.innerHTML = message;
+  var mesgs = document.getElementsByClassName('msg_history')[0]  
+  mesgs.innerHTML = '';
+  mesgs.appendChild(parser)
+  
+
+
+})
+
       

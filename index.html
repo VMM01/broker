@@ -1,12 +1,59 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
 <!DOCTYPE html>
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Hello World!</title>
   </head>
   <body>
-      <div class="row">
+      <div class="container">
+          <h3 class=" text-center">Messaging</h3>
+          <div class="messaging">
+                <div class="inbox_msg">
+                  <div class="inbox_people">
+                    <div class="headind_srch">
+                        <button type="button" id="myBtn" class="btn btn-primary add_new_chanel" style=>+</button>
+                        <div id="myModal" class="modal">
+
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                              <span class="close">&times;</span>
+                              <p>Channel name</p>
+                              <input type="text"  id="chanelName"/>
+                              <br/>
+                              <button style="max-width: 50%;margin: auto;" type="button" id="addChannel" class="btn btn-success" style=>Add channel</button>
+                            </div>
+                          
+                          </div>
+                      <div class="recent_heading">
+                        <h4>Recent</h4>
+                      </div>
+                    </div>
+                    <div class="inbox_chat">
+                      
+                    </div>
+                  </div>
+                  <div class="mesgs">
+                    <div class="msg_history">
+                    </div>
+                    <div class="type_msg">
+                      <div class="input_msg_write">
+                        <input type="text" class="write_msg" placeholder="Type a message" />
+                        <button class="msg_send_btn" id="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                              
+              </div></div>
+     <!--- <div class="row">
           <div class="columnLeft">
             <h1>Chanels</h1>
               <table>
@@ -35,22 +82,3 @@
     <script src="./renderer.js"></script>
   </body>
 </html>
-
-<script type="text/javascript">
-  const ipcRenderer = require('electron').ipcRenderer; 
-  const btnclick = document.getElementById('btnEd');
-  btnclick.addEventListener('click', function () {
-    var arg ="secondparam";
- 
-    ipcRenderer.send("btnclick", arg);
-});
-</script>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script type="text/javascript">  
- 
-//ipcRenderer.on will receive the "btnclick-task-finished" info from main process 
- ipcRenderer.on('btnclick-task-finished', function(event,param) {
-    console.log('btn finished');
- });
-</script>
